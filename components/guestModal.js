@@ -148,7 +148,7 @@ body.modal-open{ overflow:hidden; touch-action:none; }
     <div class="gm-content">
       <form id="guest-form" novalidate>
         <h3 style="margin:4px 0 8px 0;">Confirmación de asistencia</h3>
-        <p style="margin:0 0 12px 0;">Por favor ayúdanos a confirmar tu asistencia antes del 20 de octubre.</p>
+        <p style="margin:0 0 12px 0;">Por favor ayúdanos a confirmar tu asistencia antes del 5 de noviembre.</p>
 
         <div class="field">
           <label>¿Asistirás?</label>
