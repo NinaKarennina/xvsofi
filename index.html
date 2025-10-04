@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XV Viri & Lili</title>
+  <link rel="icon" type="image/x-icon" href="./images/sofiicon.png" />
+  <style>
+    :root {
+      /* Base “iPhone 14 Pro Max” (CSS px) con adaptación hacia abajo */
+      --device-w: min(100vw, 430px);
+      --device-h: min(100svh, 932px);
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("./images/background.webp") center center / cover no-repeat;
+      color: #fff;
+    }
+
+    main {
+      display: block;
+      width: var(--device-w);
+      margin-inline: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <main id="app"></main>
+
+  <script type="module">
+    import { createHeroBlock } from './blocks/hero.js';
+    import { createStack } from './blocks/stack.js';
+    import { createCountdown } from './components/countdown.js';
+    import { initParallax, initReveal } from './lib/scrollEffects.js';
+    import { initGuestModal } from './components/guestModal.js';
+    import { initAudioPlayer } from './components/audioPlayer.js';
+
+
+    const app = document.getElementById('app');
+
+    const guestModal = initGuestModal({
+      scriptURL: 'listadeinvitadosvirilili',
+      title: 'Lista de invitados',
+      description: 'Déjanos tu nombre, cuántas personas vienen y un mensaje opcional.',
+      decorTopCenterSrc: './images/flowerstopcenter.webp',
+      decorRightCenterSrc: './images/butterfliesrightbig.webp',
+      decorLeftCenterSrc: './images/butterfliesleftbig.webp'
+    })
+
+    const registry = {
+      countdown: (props) => createCountdown(props),
+      // en el futuro puedes agregar otros
+    };
+
+    // Define tus bloques como datos (¡escalable!)
+    const blocks = [
+      {
+        // fondo ya no lo necesitamos, lo dejamos vacío o quitamos la propiedad
+        background: '',
+
+        // overlays decorativos (se mantienen absolutos)
+        topLeft: './images/butterflieslefttop.webp',
+        topRight: './images/butterfliesrighttop.webp',
+
+        // stack con la imagen principal
+        stack3: {
+          items: [
+            { kind: "html", html: "<div style='height:7vh'></div>" },
+            {
+              kind: "image",
+              src: "./images/main.webp",
+              alt: "Imagen principal",
+              variant: "principal"   // 👈 ocupará ~70% del alto
+            }
+          ]
+        }
+      },
+      {
+        background: '',                         // sin fondo
+        leftCenter: './images/butterfliesleftbig.webp', // decorativo lateral
+
+        stack3: {
+          gap: "10px",
+          items: [
+            { kind: "image", src: "./images/church.webp", alt: "Cuadrada", variant: "square" },
+            {
+              kind: "buttonImage",
+              src: "./images/mapbutton.webp",
+              alt: "Iglesia",
+              variant: "wideText",
+              onClick: () => window.open('https://maps.app.goo.gl/S1pTkRZrLsmj1TsY9', '_blank')
+            }
+          ]
+        }
+      }
+      ,
+      {
+        // sin fondo ni parallax
+        background: '',
+        rightCenter: './images/butterfliesrightbig.webp',
+
+        // el stack crece por contenido (quita heights/width)
+        stack3: {
+          gap: "8px",
+          items: [
+            
+            // 2) letrero ancho (si este fuera cuadrado, usa variant: "square")
+            { kind: "image", src: "./images/reception.webp", alt: "Cuadrada", variant: "wideText" },
+
+            // 3) botón (letrero ancho) con su onClick intacto
+            {
+              kind: "buttonImage",
+              src: "./images/mapbutton.webp",
+              alt: "Salón",
+              variant: "wideText",
+              onClick: () => window.open('https://maps.app.goo.gl/MocggLhSqwr6Aj3H7', '_blank')
+            }
+          ]
+        }
+      }
+      ,
+      {
+        // sin fondo ni parallax
+        background: '',
+        leftCenter: './images/butterfliesleftbig.webp',
+
+        // el stack crece por contenido (quita heights/width)
+        stack3: {
+          gap: "8px",
+          items: [
+            
+            // 2) letrero ancho (si este fuera cuadrado, usa variant: "square")
+            { kind: "image", src: "./images/program.webp", alt: "Cuadrada", variant: "square" },
+
+            // 3) botón (letrero ancho) con su onClick intacto
+  
+          ]
+        }
+      }
+      ,
+      {
+        // sin fondo ni parallax; dejamos las decoraciones absolutas
+        background: './images/bottombackground.webp',
+        bottomCenter:'./images/bottombackground.webp',
+        
+        stack3: {
+          gap: "16px",               // un poco más de aire en el bloque final
+          items: [
+            { kind: "html", html: "<div style='height:1vh'></div>" },
+            // 1) letrero superior
+            { kind: "image", src: "./images/dresscode.webp", alt: "Cuadrada", variant: "square" },
+
+            // 2) countdown (escala a ~90% del ancho base del iPhone)
+            
+            // 3) botón de confirmación (imagen ancha, centrada)
+            {
+              kind: "buttonImage",
+              src: "./images/confirmbutton.webp",
+              alt: "Confirmar asistencia",
+              variant: "wideText",
+              onClick: () => guestModal.open()
+            },
+            {
+              kind: "node",
+              node: registry.countdown({
+                target: '2025-11-08T17:00:00-06:00',
+                bgSrc: './images/counter.webp',
+                digitsPath: d => `./digits/${d}.png`,
+                zeroPad: { days: 2, hours: 2, minutes: 2, seconds: 2 },
+                showLabels: false,
+                // clave: atarlo a tu "device width"
+                scaleWidth: 'min(90vw, calc(var(--device-w, 430px) * 0.90))',
+              })
+            },
+            { kind: "html", html: "<div style='height:10vh'></div>" },
+          ]
+        },
+      }
+
+    ];
+    const player = initAudioPlayer({
+      src: './images/virilili.mp3',   // <-- pon aquí tu archivo o URL
+      //accent: '#caa86a',             // puedes ajustar tonos si quieres
+      // width: 'min(100vw, calc(var(--device-w, 430px)))'
+    });
+
+    // Crea y monta todos los bloques
+    const nodes = blocks.map((cfg, idx) => {
+      const sec = createHeroBlock({ ...cfg, centerNode: null });
+
+      if (cfg.stack3) {
+        const s3 = createStack(cfg.stack3);
+        sec.appendChild(s3);
+      }
+
+      // 👇 Si es el último bloque, márcalo como fullscreen
+      // if (idx === blocks.length - 1) {
+      //   sec.classList.add("fullscreen");
+      // }
+
+      return sec;
+    });
+
+
+
+    app.append(...nodes);
+
+    // Efectos de scroll
+    // initReveal({ rootMargin: '0px 0px -12% 0px', once: false }); // reversa al hacer scroll back
+    //initParallax();
+  </script>
+</body>
+
+</html>
