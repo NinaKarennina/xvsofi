@@ -39,6 +39,8 @@
     import { initParallax, initReveal } from './lib/scrollEffects.js';
     import { initGuestModal } from './components/guestModal.js';
     import { initAudioPlayer } from './components/audioPlayer.js';
+    import { createSplitHero } from './blocks/splitHero.js';
+    import { createGallery } from './blocks/gallery.js';
 
 
     const app = document.getElementById('app');
@@ -56,6 +58,24 @@
       countdown: (props) => createCountdown(props),
       // en el futuro puedes agregar otros
     };
+    const topHero = createSplitHero({
+  bgSrc: './images/sofititle.webp',
+  side: 'left',                 // 'left' o 'right'
+  sideSrc: './images/title.webp',
+  ratio: '16 / 9',               // ajusta libremente (p.ej. '3 / 2')
+  maxHeight: '70vh'              // opcional
+});
+app.prepend(topHero);
+const player = initAudioPlayer({
+  src: './images/sofi.mp3',
+  width: 'calc(var(--device-w, 430px) * 0.30)',
+  top: 15,
+  safeTopPx: 15,
+  followAnchor: topHero,   // o '.split-hero'
+  followMargin: 12,
+  fadeWhileFollowing: false,
+  fadeDistancePx: 160
+});
 
     // Define tus bloques como datos (¡escalable!)
     const blocks = [
@@ -108,7 +128,7 @@
         stack3: {
           gap: "8px",
           items: [
-            
+
             // 2) letrero ancho (si este fuera cuadrado, usa variant: "square")
             { kind: "image", src: "./images/reception.webp", alt: "Cuadrada", variant: "wideText" },
 
@@ -133,12 +153,12 @@
         stack3: {
           gap: "8px",
           items: [
-            
+
             // 2) letrero ancho (si este fuera cuadrado, usa variant: "square")
             { kind: "image", src: "./images/program.webp", alt: "Cuadrada", variant: "square" },
 
             // 3) botón (letrero ancho) con su onClick intacto
-  
+
           ]
         }
       }
@@ -146,8 +166,8 @@
       {
         // sin fondo ni parallax; dejamos las decoraciones absolutas
         background: './images/bottombackground.webp',
-        bottomCenter:'./images/bottombackground.webp',
-        
+        bottomCenter: './images/bottombackground.webp',
+
         stack3: {
           gap: "16px",               // un poco más de aire en el bloque final
           items: [
@@ -156,7 +176,7 @@
             { kind: "image", src: "./images/dresscode.webp", alt: "Cuadrada", variant: "square" },
 
             // 2) countdown (escala a ~90% del ancho base del iPhone)
-            
+
             // 3) botón de confirmación (imagen ancha, centrada)
             {
               kind: "buttonImage",
@@ -183,11 +203,8 @@
       }
 
     ];
-    const player = initAudioPlayer({
-      src: './images/virilili.mp3',   // <-- pon aquí tu archivo o URL
-      //accent: '#caa86a',             // puedes ajustar tonos si quieres
-      // width: 'min(100vw, calc(var(--device-w, 430px)))'
-    });
+    
+
 
     // Crea y monta todos los bloques
     const nodes = blocks.map((cfg, idx) => {
@@ -199,9 +216,9 @@
       }
 
       // 👇 Si es el último bloque, márcalo como fullscreen
-      // if (idx === blocks.length - 1) {
-      //   sec.classList.add("fullscreen");
-      // }
+      if (idx === blocks.length - 1) {
+        sec.style.marginBottom = '0';
+      }
 
       return sec;
     });
@@ -209,6 +226,19 @@
 
 
     app.append(...nodes);
+    const gallery = createGallery({
+  images: [
+    './images/sofigal1.jpg',
+    './images/sofigal2.jpg',
+    './images/sofigal3.jpg',
+  ],
+  ratio: '16 / 9',
+  loop: true,
+  openOnClick: true,
+  captions: ['','','']
+});
+app.appendChild(gallery);
+
 
     // Efectos de scroll
     // initReveal({ rootMargin: '0px 0px -12% 0px', once: false }); // reversa al hacer scroll back
