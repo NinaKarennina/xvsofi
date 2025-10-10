@@ -193,16 +193,15 @@ if (!document.getElementById(STYLE_ID)) {
 }
 
 .cd-pill{
-  min-width: calc(var(--k) * 70px);
+  min-width: calc(var(--k) * 30px);
   min-height: calc(var(--k) * 60px);
   border-radius: 999px;
   padding-inline: calc(var(--k) * 16px);
-  background: var(--cd-pill-color, #A77A71);
+  background: transparent;
   display:flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 0 rgba(255,255,255,.35) inset,
-              0 10px 30px rgba(0,0,0,.18);
+  box-shadow: none
 }
 
 .cd-digit-row{
@@ -214,7 +213,7 @@ if (!document.getElementById(STYLE_ID)) {
 }
 
 .cd-digit{
-  max-height: calc(var(--k) * 40px);
+  max-height: calc(var(--k) * 35px);
   width: auto;
   display: block;
   object-fit: contain;

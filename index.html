@@ -192,9 +192,9 @@ const player = initAudioPlayer({
                 bgSrc: './images/counter.webp',
                 digitsPath: d => `./digits/${d}.png`,
                 zeroPad: { days: 2, hours: 2, minutes: 2, seconds: 2 },
-                showLabels: false,
+                showLabels: true,
                 // clave: atarlo a tu "device width"
-                scaleWidth: 'min(90vw, calc(var(--device-w, 430px) * 0.90))',
+                scaleWidth: 'min(80vw, calc(var(--device-w, 430px) * 0.90))',
               })
             },
             { kind: "html", html: "<div style='height:10vh'></div>" },
