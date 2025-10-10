@@ -7,7 +7,7 @@ export function createCountdown({
     height: "56px",
     minWidth: "88px",
     radius: "999px",
-    color: "#9645ad", // rosa
+    color: "#ede2f0", // rosa
     paddingInline: "16px",
     gapDigits: "6px",
   },
@@ -197,11 +197,13 @@ if (!document.getElementById(STYLE_ID)) {
   min-height: calc(var(--k) * 60px);
   border-radius: 999px;
   padding-inline: calc(var(--k) * 16px);
-  background: transparent;
+  background: var(--cd-pill-color, #A77A71);
   display:flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none
+  border: 2px solid #ffcf82;
+  box-shadow: 0 1px 0 rgba(255,255,255,.35) inset,
+              0 10px 30px rgba(0,0,0,.18);
 }
 
 .cd-digit-row{
@@ -213,7 +215,7 @@ if (!document.getElementById(STYLE_ID)) {
 }
 
 .cd-digit{
-  max-height: calc(var(--k) * 35px);
+  max-height: calc(var(--k) * 30px);
   width: auto;
   display: block;
   object-fit: contain;
