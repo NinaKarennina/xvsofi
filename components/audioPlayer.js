@@ -34,7 +34,6 @@ export function initAudioPlayer({
   width: var(--am-width, ${width});
   z-index: 9990;
   pointer-events: none;
-  will-change: transform, opacity;
 }
 
 .am-wrap{
