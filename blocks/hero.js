@@ -13,7 +13,7 @@ export function createHeroBlock({
   centerNode = null,
 }) {
   const {
-    small = "25vmin",
+    small = "40vmin",
     sideH = "33vh",
     centerH = "40vh",
     bottomH = "28vh"
@@ -254,7 +254,7 @@ if (!document.getElementById(styleId)) {
       user-select: none;
       -webkit-user-drag: none;
       pointer-events: none;
-    }
+    } 
     .hero-block .center-node{
       position:absolute;
       top:50%;
