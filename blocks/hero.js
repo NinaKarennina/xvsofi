@@ -13,7 +13,7 @@ export function createHeroBlock({
   centerNode = null,
 }) {
   const {
-    small = "18vmin",
+    small = "25vmin",
     sideH = "33vh",
     centerH = "40vh",
     bottomH = "28vh"
@@ -163,8 +163,8 @@ if (!document.getElementById(styleId)) {
       position: absolute;
       top:0;
       left:0;
-      max-width:172px ;
-      max-height:40vw;
+      width: var(--img-small);
+      height: auto;
       object-fit: contain;
       pointer-events: none;
       transform: var(--base-transform, none);
@@ -206,8 +206,8 @@ if (!document.getElementById(styleId)) {
       position: absolute;
       top: 50%;
       left: 0;
-      max-height: 200px;
-      width: auto;
+      max-height: 400px;
+      max-width: 120px;
       object-fit: contain;
       pointer-events: none;
       --base-transform: translate(0%,-50%);
@@ -218,8 +218,8 @@ if (!document.getElementById(styleId)) {
       position: absolute;
       top: 50%;
       right:0;
-      max-height:200px ;
-      max-width: 186px;
+      max-height:400px ;
+      max-width: 120px;
       object-fit: contain;
       pointer-events: none;
       z-index:1;

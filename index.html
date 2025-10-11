@@ -46,7 +46,7 @@
     const app = document.getElementById('app');
 
     const guestModal = initGuestModal({
-      scriptURL: 'listadeinvitadosvirilili',
+      scriptURL: 'listadeinvitadossofi',
       title: 'Lista de invitados',
       description: 'Déjanos tu nombre, cuántas personas vienen y un mensaje opcional.',
       decorTopCenterSrc: './images/flowerstopcenter.webp',
@@ -93,7 +93,7 @@ const player = initAudioPlayer({
             { kind: "html", html: "<div style='height:7vh'></div>" },
             {
               kind: "image",
-              src: "./images/intro.webp",
+              src: "./images/main.webp",
               alt: "Imagen principal",
               variant: "principal"   // 👈 ocupará ~70% del alto
             }
@@ -103,14 +103,14 @@ const player = initAudioPlayer({
       {
         background: '',                         // sin fondo
         leftCenter: './images/butterfliesleftbig.webp', // decorativo lateral
-
+        rightCenter:'./images/butterflieright.webp',
         stack3: {
           gap: "10px",
           items: [
             { kind: "image", src: "./images/church.webp", alt: "Cuadrada", variant: "square" },
             {
               kind: "buttonImage",
-              src: "./images/mapbutton.webp",
+              src: "./images/mapbutton2.webp",
               alt: "Iglesia",
               variant: "wideText",
               onClick: () => window.open('https://maps.app.goo.gl/9SKv1Xc23EsZLbDQ6', '_blank')
@@ -122,7 +122,9 @@ const player = initAudioPlayer({
       {
         // sin fondo ni parallax
         background: '',
+        topLeft: './images/butterflielefttop.webp',
         rightCenter: './images/butterfliesrightbig.webp',
+        //leftCenter: './images/butterfliesleftbig.webp', // decorativo lateral
 
         // el stack crece por contenido (quita heights/width)
         stack3: {
@@ -135,7 +137,7 @@ const player = initAudioPlayer({
             // 3) botón (letrero ancho) con su onClick intacto
             {
               kind: "buttonImage",
-              src: "./images/mapbutton.webp",
+              src: "./images/mapbutton2.webp",
               alt: "Salón",
               variant: "wideText",
               onClick: () => window.open('https://maps.app.goo.gl/MocggLhSqwr6Aj3H7', '_blank')
@@ -147,7 +149,8 @@ const player = initAudioPlayer({
       {
         // sin fondo ni parallax
         background: '',
-        leftCenter: './images/butterfliesleftbig.webp',
+        leftCenter: './images/scheduleleft.webp',
+        rightCenter: './images/scheduleright.webp',
 
         // el stack crece por contenido (quita heights/width)
         stack3: {
@@ -167,20 +170,22 @@ const player = initAudioPlayer({
         // sin fondo ni parallax; dejamos las decoraciones absolutas
         background: './images/bottombackground.webp',
         bottomCenter: './images/bottombackground.webp',
+        topLeft:'./images/butterflielefttop.webp',
+        topRight:'./images/butterflielefttop2.webp',
 
         stack3: {
           gap: "16px",               // un poco más de aire en el bloque final
           items: [
             { kind: "html", html: "<div style='height:1vh'></div>" },
             // 1) letrero superior
-            { kind: "image", src: "./images/dresscode.webp", alt: "Cuadrada", variant: "square" },
+            { kind: "image", src: "./images/dresscode2.webp", alt: "Cuadrada", variant: "square" },
 
             // 2) countdown (escala a ~90% del ancho base del iPhone)
 
             // 3) botón de confirmación (imagen ancha, centrada)
             {
               kind: "buttonImage",
-              src: "./images/confirmbutton.webp",
+              src: "./images/confirmbutton2.webp",
               alt: "Confirmar asistencia",
               variant: "wideText",
               onClick: () => guestModal.open()

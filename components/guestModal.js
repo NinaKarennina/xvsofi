@@ -186,7 +186,7 @@ body.modal-open{ overflow:hidden; touch-action:none; }
 
         <p style="margin:12px 2px 0 2px; opacity:.95;">
           ¡Gracias por confirmar!<br>
-          Te esperamos con mucha ilusión para disfrutar, divertirnos y bailar juntos. 🎉 💃🕺
+          Ahora sí, a contar los días para la fiesta, risas y mucho baile. 💃🕺
         </p>
 
         <div class="actions">
